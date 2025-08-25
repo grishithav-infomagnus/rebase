@@ -48,18 +48,17 @@ The infrastructure includes:
    resource_group_name = "<your-resource-group-name>"
    location            = "<your-azure-region>"
    subscription_id     = "<your-subscription-id>"
-   # Add other variables as needed, such as:
-   # cosmosdb_account_name = "<your-cosmosdb-account-name>"
-   # storage_account_name  = "<your-storage-account-name>"
-   # function_app_name     = "<your-function-app-name>"
+   cosmosdb_account_name = "<your-cosmosdb-account-name>"
+   storage_account_name  = "<your-storage-account-name>"
+   function_app_name     = "<your-function-app-name>"
    ```
 
    # Add other variables as needed
    ```
 
 4. **Initialize Terraform**
+   Initialize Terraform and configure the backend for remote state storage
    ```bash
-   # Initialize Terraform and configure the backend for remote state storage
    terraform init \
      -backend-config="resource_group_name=<your-resource-group>" \
      -backend-config="storage_account_name=<your-storage-account>" \
