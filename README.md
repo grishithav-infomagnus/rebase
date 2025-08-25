@@ -43,7 +43,7 @@ The infrastructure includes:
    az login
    ```
 
-3. **Set Variable Values**
+3. **Set Variable Values**  
    Edit the appropriate variable file (`dev.tfvars`, `qa.tfvars`, or `prod.tfvars`) to provide values for your environment:
    ```hcl
    resource_group_name    = "<your-resource-group-name>"
@@ -62,13 +62,13 @@ The infrastructure includes:
    - **Cost Management:** Resource sizes and counts can be smaller in dev/QA to save costs, while production can use more robust settings.
    - **Configuration Flexibility:** You can easily switch between environments by specifying the appropriate tfvars file during plan/apply.
 
-4. **Navigate to the Infrastructure Folder**
+4. **Navigate to the Infrastructure Folder**  
    Change directory to the `chatbot-infrastructure` folder:
    ```sh
    cd chatbot-infrastructure
    ```
 
-5. **Initialize Terraform**
+5. **Initialize Terraform**  
    Initialize Terraform and configure the backend for remote state storage:
    ```sh
    terraform init \
@@ -78,20 +78,20 @@ The infrastructure includes:
      -backend-config="key=<tfstate-key>"
    ```
 
-6. **Validate the Configuration**
+6. **Validate the Configuration**  
    Run Terraform's built-in validation to check for syntax errors and internal consistency:
    ```sh
    terraform validate
    ```
 
-7. **Plan the Deployment**
+7. **Plan the Deployment**  
    Generate and review an execution plan. Specify the appropriate variable file for your environment (e.g., `dev.tfvars`, `qa.tfvars`, or `prod.tfvars`):
    ```sh
    terraform plan -var-file=<environment>.tfvars
    ```
    Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
 
-8. **Apply the Deployment**
+8. **Apply the Deployment**  
    Apply the changes using the appropriate variable file for your environment (e.g., `dev.tfvars`, `qa.tfvars`, or `prod.tfvars`):
    ```sh
    terraform apply -var-file=<environment>.tfvars
@@ -104,7 +104,7 @@ The infrastructure includes:
 - Store sensitive values (like secrets) in a secure backend or use environment variables.
 - Use `for_each` and maps to avoid code repetition for similar resources (e.g., Cosmos DB containers).
 
-## Clean Up
+## Clean Up  
 
 To destroy all resources created by this configuration:
 ```sh
@@ -117,3 +117,6 @@ Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
 - Make sure you have the necessary permissions in your Azure subscription.
 - Review and update the `<environment>.tfvars` file for your specific environment and naming conventions.
 - Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
+
+
+
