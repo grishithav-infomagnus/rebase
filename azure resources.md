@@ -1,9 +1,5 @@
 # Azure Services for Chatbot Project
 
-AI Chatbot : Azure Services
-
-# Azure Services for Chatbot Project
-
 This document outlines the key Azure services required for the Chatbot project. All resources are provisioned separately for each environment: **Development (Dev)**, **Quality Assurance (QA)**, and **Production (Prod)**. This ensures isolation, security, and flexibility for each stage of the application lifecycle.
  
  - To see the naming conventions for each environment, check the `<environment>.tfvars` file. 
@@ -25,6 +21,16 @@ This document outlines the key Azure services required for the Chatbot project. 
   - Scales automatically based on demand to handle user interactions
   - Minimizes infrastructure management, allowing faster development
   - Separate Function App for each environment
+
+### Storage Account
+  - Stores files, logs, and artifacts required by the chatbot and its components
+  - Used for Function App code deployment and persistent storage needs
+  - Separate Storage Account for each environment
+
+### App Service Plan (linked to Function App)
+  - Provides the underlying compute resources for the Function App
+  - Allows scaling and performance configuration for serverless workloads
+  - Each Function App is associated with its own App Service Plan per environment
 
 ### Azure Cosmos DB
   - Stores chatbot conversation data and user information with low latency
@@ -54,8 +60,3 @@ This document outlines the key Azure services required for the Chatbot project. 
     - **Chat Completion Model**: Used for generating conversational responses and handling chat interactions.
   - Separate OpenAI resource for each environment
 
-### Azure App Service
-  - Hosts the chatbot’s web front-end and APIs securely and reliably
-  - Offers built-in auto-scaling and load balancing
-  - Facilitates continuous deployment and integration for rapid updates
-  - Separate App Service for each environment
