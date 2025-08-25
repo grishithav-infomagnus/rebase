@@ -43,7 +43,6 @@ The infrastructure includes:
    az login
    ```
 
-
 3. **Set Variable Values**
    Edit the appropriate variable file (`dev.tfvars`, `qa.tfvars`, or `prod.tfvars`) to provide values for your environment:
    ```hcl
@@ -63,7 +62,6 @@ The infrastructure includes:
    - **Cost Management:** Resource sizes and counts can be smaller in dev/QA to save costs, while production can use more robust settings.
    - **Configuration Flexibility:** You can easily switch between environments by specifying the appropriate tfvars file during plan/apply.
 
-
 4. **Navigate to the Infrastructure Folder**
    Change directory to the `chatbot-infrastructure` folder:
    ```sh
@@ -79,8 +77,6 @@ The infrastructure includes:
      -backend-config="container_name=<tfstate-container-name>" \
      -backend-config="key=<tfstate-key>"
    ```
-
-
 
 6. **Validate the Configuration**
    Run Terraform's built-in validation to check for syntax errors and internal consistency:
@@ -121,6 +117,3 @@ Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
 - Make sure you have the necessary permissions in your Azure subscription.
 - Review and update the `<environment>.tfvars` file for your specific environment and naming conventions.
 - Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
-
-
-
