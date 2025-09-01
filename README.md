@@ -156,9 +156,10 @@ This project uses a GitHub Actions workflow to automate the provisioning and man
    - `environment`: The environment name (dev, qa, prod) used to select the correct tfvars file.
 
 ```
-
+```
 **Note:**
 - Ensure all required secrets and variables are set in your GitHub repository settings.
+```
 
 
 
