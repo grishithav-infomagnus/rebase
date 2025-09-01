@@ -119,4 +119,46 @@ Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
 - Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
 
 
+# CI/CD Pipeline for Chatbot Infrastructure
+
+This project uses a GitHub Actions workflow to automate the provisioning and management of Azure infrastructure using Terraform. The pipeline ensures consistent deployments across environments and reduces manual intervention.
+
+## Pipeline Overview
+
+- **Trigger:**
+   - The workflow runs automatically on pushes to the `Chatbot-Infrastructure` branch.
+
+- **Environments:**
+   - The pipeline is designed for multiple environments (dev, qa, prod). By default, only the `dev` environment job is active. 
+
+- **Stages:**
+   1. **Checkout Code:** Uses `actions/checkout@v4` to pull the latest code.
+   2. **Setup Terraform:** Installs Terraform using `hashicorp/setup-terraform@v3`.
+   3. **Azure Login:** Authenticates to Azure using the `azure/login@v1` action and credentials stored in the `AZURE_CREDENTIALS` secret.
+   4. **Terraform Init:** Initializes Terraform with backend configuration for remote state storage, using variables for resource group, storage account, container, and state key.
+   5. **Terraform Validate:** Validates the Terraform configuration for syntax and consistency.
+   6. **Terraform Plan:** Generates an execution plan using the environment-specific tfvars file.
+   7. **Terraform Apply:** Applies the planned changes to provision or update resources in Azure.
+
+- **Environment Promotion:**
+   - The `build-qa` and `build-prod` jobs show how to promote changes from dev to QA and then to production, with each stage depending on the previous one.
+   - **Deployment to production requires approval at the prod environment level (i.e., an authorized user must go to GitHub Actions for the pipeline and give approval for the prod deployment job to proceed).**
+
+## Required GitHub Secrets and Variables
+
+- **Secrets:**
+   - `AZURE_CREDENTIALS`: Azure service principal credentials in JSON format.
+- **Variables:**
+   - `AZURE_RESOURCE_GROUP`: Name of the Azure Resource Group.
+   - `STORAGE_TFSTATE_ACCOUNT`: Name of the storage account for Terraform state.
+   - `TFSTATE_CONTAINER`: Name of the blob container for state files.
+   - `TFSTATE_KEY`: Key (file name) for the state file.
+   - `environment`: The environment name (dev, qa, prod) used to select the correct tfvars file.
+
+```
+
+**Note:**
+- Ensure all required secrets and variables are set in your GitHub repository settings.
+
+
 
