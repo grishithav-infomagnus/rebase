@@ -36,13 +36,16 @@ The infrastructure includes:
 1. **Install Terraform**  
    Download and install Terraform from [terraform.io](https://www.terraform.io/downloads.html).
 
-2. **Configure Azure Credentials**  
+2. **Install Azure CLI**
+   Download and install Azure CLI from (https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest&pivots=winget).
+   And also install Azure Tools extensions in VSCode.
+
+3. **Configure Azure Credentials**  
    Authenticate with Azure CLI:
    ```bash
    az login
    ```
-
-3. **Set Variable Values**  
+4. **Set Variable Values**  
    Edit the appropriate variable file (`dev.tfvars`, `qa.tfvars`, or `prod.tfvars`) to provide values for your environment:
    ```hcl
    resource_group_name    = "<your-resource-group-name>"
@@ -61,13 +64,12 @@ The infrastructure includes:
    - **Cost Management:** Resource sizes and counts can be smaller in dev/QA to save costs, while production can use more robust settings.
    - **Configuration Flexibility:** You can easily switch between environments by specifying the appropriate tfvars file during plan/apply.
 
-4. **Navigate to the Infrastructure Folder**  
+5. **Navigate to the Infrastructure Folder**  
    Change directory to the `chatbot-infrastructure` folder:
    ```sh
    cd chatbot-infrastructure
    ```
-
-5. **Initialize Terraform**  
+6. **Initialize Terraform**  
    Initialize Terraform and configure the backend for remote state storage:
    ```sh
    terraform init \
@@ -76,26 +78,31 @@ The infrastructure includes:
      -backend-config="container_name=<tfstate-container-name>" \
      -backend-config="key=<tfstate-key>"
    ```
-
-6. **Validate the Configuration**  
+7. **Validate the Configuration**  
    Run Terraform's built-in validation to check for syntax errors and internal consistency:
    ```sh
    terraform validate
    ```
 
-7. **Plan the Deployment**  
+8. **Plan the Deployment**  
    Generate and review an execution plan. Specify the appropriate variable file for your environment (e.g., `dev.tfvars`, `qa.tfvars`, or `prod.tfvars`):
    ```sh
    terraform plan -var-file=<environment>.tfvars
    ```
    Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
 
-8. **Apply the Deployment**  
-   Apply the changes using the appropriate variable file for your environment (e.g., `dev.tfvars`, `qa.tfvars`, or `prod.tfvars`):
-   ```sh
-   terraform apply -var-file=<environment>.tfvars
-   ```
-   Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
+9. **Review the Plan Output**  
+   Carefully examine the plan output to see which resources will be added, changed, or destroyed. If you notice any unintended changes, modify your Terraform code or variable files as needed and re-run the plan until the output matches your expectations.
+
+10. **Deployment Recommendation**  
+   > **Note:** If you want to deploy resources using the terminal (instead of the recommended CI/CD pipeline), follow the steps below.
+
+   11. **Apply the Deployment**  
+      If you run the following command, it will deploy the resources from your terminal according to the plan output:
+      ```sh
+      terraform apply -var-file=<environment>.tfvars
+      ```
+      Replace `<environment>` with `dev`, `qa`, or `prod` as needed.
 
 ## Best Practices
 
