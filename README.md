@@ -1,4 +1,3 @@
-
 # AI Chatbot Terraform Infrastructure
 
 This document describes the Terraform codebase used to provision and manage Azure infrastructure for the AI Chatbot project.
@@ -155,11 +154,5 @@ This project uses a GitHub Actions workflow to automate the provisioning and man
    - `TFSTATE_KEY`: Key (file name) for the state file.
    - `environment`: The environment name (dev, qa, prod) used to select the correct tfvars file.
 
-```
-```
 **Note:**
 - Ensure all required secrets and variables are set in your GitHub repository settings.
-```
-
-
-
